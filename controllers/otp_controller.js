@@ -1,10 +1,12 @@
 const Otp = require("../models/otp_model");
 const nodemailer = require("nodemailer");
+const connectDB = require("../lib/db");
 
 // =======================
 // 🔥 SEND OTP
 // =======================
 exports.sendOtp = async (req, res) => {
+   await connectDB(); // 🔥 MUST
   try {
     const { email } = req.body;
 
