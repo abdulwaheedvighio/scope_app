@@ -21,17 +21,14 @@ app.get("/", (req, res) => {
   });
 });
 
-// DB connect (safe for serverless)
-mongoose
-  .connect(process.env.MONGO_URI)
-  .then(() => console.log("MongoDB Connected"))
-  .catch((err) => console.log(err));
+// DB connect (safe for Vercel)
+mongoose.connect(process.env.MONGO_URI, {
+  serverSelectionTimeoutMS: 30000,
+})
+.then(() => console.log("MongoDB Connected 🚀"))
+.catch((err) => console.log("Mongo Error ❌", err));
 
-// ❌ REMOVE app.listen COMPLETELY
+// ❌ NO app.listen (IMPORTANT)
 
-app.listen(5000, () => {
-  console.log("Server running on 5000");
-});
-app.listen()
-
+// export for Vercel
 module.exports = app;
