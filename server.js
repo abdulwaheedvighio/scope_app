@@ -29,4 +29,9 @@ mongoose
 
 // ❌ REMOVE app.listen COMPLETELY
 
+app.listen(5000, () => {
+  console.log("Server running on 5000");
+});
+app.listen()
+
 module.exports = app;
