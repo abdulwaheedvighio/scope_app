@@ -10,26 +10,23 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+// routes
 app.use("/api", otpRoutes);
 
-
+// home route
 app.get("/", (req, res) => {
   res.json({
     success: true,
-    message: "API is running successfully",
+    message: "API is running successfully 🚀",
   });
 });
 
-
-
+// DB connect (safe for serverless)
 mongoose
   .connect(process.env.MONGO_URI)
-  .then(() => {
-    console.log("MongoDB Connected");
-  });
+  .then(() => console.log("MongoDB Connected"))
+  .catch((err) => console.log(err));
 
-app.listen(process.env.PORT, () => {
-  console.log(
-    `Server running on port http://localhost:${process.env.PORT}`
-  );
-});
+// ❌ REMOVE app.listen COMPLETELY
+
+module.exports = app;
