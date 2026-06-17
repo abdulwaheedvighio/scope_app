@@ -6,8 +6,9 @@ const connectDB = require("../lib/db");
 // 🔥 SEND OTP
 // =======================
 exports.sendOtp = async (req, res) => {
-   await connectDB(); // 🔥 MUST
+  
   try {
+    await connectDB(); // 🔥 inside try (IMPORTANT)
     const { email } = req.body;
 
     if (!email) {
